@@ -12,8 +12,8 @@ services:
   OCR2:
     build:
       context: ./
-      dockerfile: OCR2/Dockerfile
-    container_name: OCR2-container
+      dockerfile: ocr2/Dockerfile
+    container_name: ocr2-container
     ports:
       - 7860:7860
     deploy:
