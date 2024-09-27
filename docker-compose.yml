@@ -24,7 +24,6 @@ services:
     platform: linux/amd64
     runtime: nvidia  # Используем GPU
 
-
   app:
     build:
       context: ./
