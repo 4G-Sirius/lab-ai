@@ -8,6 +8,9 @@ services:
       - ollama:/root/.ollama
     ports:
       - 11434:11434
+    runtime: nvidia  # Использование GPU runtime
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all  # Указываем все доступные GPU
 
   ocr2:
     build:
@@ -16,13 +19,10 @@ services:
     container_name: ocr2-container
     ports:
       - 7860:7860
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - capabilities: ["gpu"]
+    runtime: nvidia  # Использование GPU runtime
     platform: linux/amd64
-    runtime: nvidia  # Используем GPU
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all  # Указываем все доступные GPU
 
   app:
     build:
