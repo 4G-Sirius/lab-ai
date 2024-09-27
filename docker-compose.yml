@@ -13,8 +13,10 @@ services:
       - NVIDIA_VISIBLE_DEVICES=all  # Указываем все доступные GPU
 
   easyocr:
-    image: voduytuan/restful-easyocr
-    container_name: easyocr
+    build:
+      context: ./
+      dockerfile: easyocr/Dockerfile
+    container_name: easyocr-container
     ports:
       - 2000:2000
     runtime: nvidia  # Использование GPU runtime
