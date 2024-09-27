@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  ollama:
+    image: ollama/ollama
+    container_name: ollama-container
+    volumes:
+      - ollama:/root/.ollama
+    ports:
+      - 11434:11434
+
+  OCR2:
+    build:
+      context: ./
+      dockerfile: OCR2/Dockerfile
+    container_name: OCR2-container
+    ports:
+      - 7860:7860
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: ["gpu"]
+    platform: linux/amd64
+    runtime: nvidia  # Используем GPU
+
+
+  app:
+    build:
+      context: ./
+      dockerfile: app/Dockerfile
+    container_name: app-container
+    working_dir: /app
+    volumes:
+      - ./:/data
+
+volumes:
+  ollama:
