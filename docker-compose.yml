@@ -12,17 +12,27 @@ services:
     environment:
       - NVIDIA_VISIBLE_DEVICES=all  # Указываем все доступные GPU
 
-  ocr2:
-    build:
-      context: ./
-      dockerfile: ocr2/Dockerfile
-    container_name: ocr2-container
+  easyocr:
+    image: voduytuan/restful-easyocr
+    container_name: easyocr
     ports:
-      - 7860:7860
+      - 2000:2000
     runtime: nvidia  # Использование GPU runtime
     platform: linux/amd64
     environment:
       - NVIDIA_VISIBLE_DEVICES=all  # Указываем все доступные GPU
+
+  # ocr2:
+  #   build:
+  #     context: ./
+  #     dockerfile: ocr2/Dockerfile
+  #   container_name: ocr2-container
+  #   ports:
+  #     - 7860:7860
+  #   runtime: nvidia  # Использование GPU runtime
+  #   platform: linux/amd64
+  #   environment:
+  #     - NVIDIA_VISIBLE_DEVICES=all  # Указываем все доступные GPU
 
   app:
     build:
