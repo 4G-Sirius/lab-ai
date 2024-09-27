@@ -9,7 +9,7 @@ services:
     ports:
       - 11434:11434
 
-  OCR2:
+  ocr2:
     build:
       context: ./
       dockerfile: ocr2/Dockerfile
