@@ -12,38 +12,38 @@ services:
     environment:
       - NVIDIA_VISIBLE_DEVICES=all  # Указываем все доступные GPU
 
-  easyocr:
-    build:
-      context: ./
-      dockerfile: easyocr/Dockerfile
-    container_name: easyocr-container
-    ports:
-      - 2000:2000
-    runtime: nvidia  # Использование GPU runtime
-    platform: linux/amd64
-    environment:
-      - NVIDIA_VISIBLE_DEVICES=all  # Указываем все доступные GPU
-
-  # ocr2:
+  # easyocr:
   #   build:
   #     context: ./
-  #     dockerfile: ocr2/Dockerfile
-  #   container_name: ocr2-container
+  #     dockerfile: easyocr/Dockerfile
+  #   container_name: easyocr-container
   #   ports:
-  #     - 7860:7860
+  #     - 2000:2000
   #   runtime: nvidia  # Использование GPU runtime
   #   platform: linux/amd64
   #   environment:
   #     - NVIDIA_VISIBLE_DEVICES=all  # Указываем все доступные GPU
 
-  app:
-    build:
-      context: ./
-      dockerfile: app/Dockerfile
-    container_name: app-container
-    working_dir: /app
-    volumes:
-      - ./:/data
+  # # ocr2:
+  # #   build:
+  # #     context: ./
+  # #     dockerfile: ocr2/Dockerfile
+  # #   container_name: ocr2-container
+  # #   ports:
+  # #     - 7860:7860
+  # #   runtime: nvidia  # Использование GPU runtime
+  # #   platform: linux/amd64
+  # #   environment:
+  # #     - NVIDIA_VISIBLE_DEVICES=all  # Указываем все доступные GPU
+
+  # app:
+  #   build:
+  #     context: ./
+  #     dockerfile: app/Dockerfile
+  #   container_name: app-container
+  #   working_dir: /app
+  #   volumes:
+  #     - ./:/data
 
 volumes:
   ollama:
