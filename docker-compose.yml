@@ -1,4 +1,3 @@
-version: '3.8'
 
 services:
   ollama:
@@ -12,17 +11,17 @@ services:
     environment:
       - NVIDIA_VISIBLE_DEVICES=all  # Указываем все доступные GPU
 
-  # easyocr:
-  #   build:
-  #     context: ./
-  #     dockerfile: easyocr/Dockerfile
-  #   container_name: easyocr-container
-  #   ports:
-  #     - 2000:2000
-  #   runtime: nvidia  # Использование GPU runtime
-  #   platform: linux/amd64
-  #   environment:
-  #     - NVIDIA_VISIBLE_DEVICES=all  # Указываем все доступные GPU
+  easyocr:
+    build:
+      context: ./
+      dockerfile: easyocr/Dockerfile
+    container_name: easyocr-container
+    ports:
+      - 2000:2000
+    runtime: nvidia  # Использование GPU runtime
+    platform: linux/amd64
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all  # Указываем все доступные GPU
 
   # # ocr2:
   # #   build:
